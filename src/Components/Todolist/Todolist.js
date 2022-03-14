@@ -16,12 +16,14 @@ export const Todolist = ({ getTodoId }) => {
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    getTodos();
+    onSnapshot(collection(db, "todos"), (snapshot) => {
+      setTodos(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setLoading(false);
+    });
   }, []);
   const getTodos = async () => {
     const data = await TodoDataService.getAllTodos();
     setTodos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    setLoading(false);
   };
   if (loading) {
     return (

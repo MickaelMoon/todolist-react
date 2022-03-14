@@ -32,7 +32,7 @@ export const TodoDetail = () => {
 
   useEffect(() => {
     getTodo(id);
-  });
+  }, []);
   const getTodo = async (id) => {
     const data = await TodoDataService.getTodo(id);
     setTitle(data.data().title);

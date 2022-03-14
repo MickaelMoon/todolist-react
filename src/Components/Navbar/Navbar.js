@@ -49,8 +49,6 @@ export const Navbar = () => {
   const [prio, setPrio] = useState(false);
   const [infos, setInfos] = useState("");
 
-  const payload = { title, prio, infos };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newTodo = {
